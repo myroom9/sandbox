@@ -15,6 +15,13 @@ import javax.persistence.*;
 @Table(name = "creators")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Creator extends BaseEntity {
+
+    public Creator(String name, String birth, int sex) {
+        this.name = name;
+        this.birth = birth;
+        this.sex = sex;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "BIGINT(1) UNSIGNED")
@@ -37,5 +44,10 @@ public class Creator extends BaseEntity {
     public String toString() {
         return ToStringBuilder
                 .reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
+    }
+
+    public Creator addChannel(Channel channel) {
+        this.channel = channel;
+        return this;
     }
 }
