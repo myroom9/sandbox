@@ -1,9 +1,8 @@
-package com.whahn.sandbox.domain.settlement;
+package com.whahn.sandbox.domain.creatorsettlement;
 
 import com.whahn.sandbox.common.BaseEntity;
 import com.whahn.sandbox.domain.channel.Channel;
 import com.whahn.sandbox.domain.creator.Creator;
-import com.whahn.sandbox.domain.settlement.v1.request.BasicSettlementRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,15 +15,18 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@Table(name = "settlements")
+@Table(name = "creator_settlements")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Settlement extends BaseEntity {
+public class CreatorSettlement extends BaseEntity {
 
-    public Settlement(BasicSettlementRequest.SaveRequest request, Channel channel) {
-        this.creatorSettlementAmount = request.getCreatorSettlementAmount();
-        this.companySettlementAmount = request.getCompanySettlementAmount();
-        this.settlementDate = request.getSettlementDate();
+    public CreatorSettlement(Channel channel,
+                             Creator creator,
+                             BigDecimal settlementAmount,
+                             LocalDate settlementDate) {
         this.channel = channel;
+        this.creator = creator;
+        this.settlementAmount = settlementAmount;
+        this.settlementDate = settlementDate;
     }
 
     @Id
@@ -32,11 +34,8 @@ public class Settlement extends BaseEntity {
     @Column(columnDefinition = "BIGINT(1)  UNSIGNED")
     private Long id;
 
-    @Column(name = "creator_settlement_amount", nullable = false)
-    private BigDecimal creatorSettlementAmount;
-
-    @Column(name = "company_settlement_amount", nullable = false)
-    private BigDecimal companySettlementAmount;
+    @Column(name = "settlement_amount", nullable = false)
+    private BigDecimal settlementAmount;
 
     @Column(name = "settlement_date", nullable = false)
     private LocalDate settlementDate;

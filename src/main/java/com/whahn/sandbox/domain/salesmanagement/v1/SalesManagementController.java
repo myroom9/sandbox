@@ -21,12 +21,13 @@ import javax.validation.Valid;
 @RequestMapping(value = "/api/v1/sales-management", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SalesManagementController {
 
-    private SalesManagementFacade salesManagementFacade;
+    private final SalesManagementFacade salesManagementFacade;
 
     @Operation(summary = "유튜브 채널별 수익 금액 일별 데이터 등록 API")
     @PostMapping("/daily")
     public ApiResponse<Void> saveDailySales(@Valid BasicSalesManagementRequest.SaveRequest request) {
-
+        log.info("유튜브 채널별 수익 금액 일별 데이터 등록 요청 데이터: {}", request);
+        salesManagementFacade.saveSalesAndSettlement(request);
         return ApiResponse.success();
     }
 

@@ -62,7 +62,6 @@ public class BasicContractRequest {
 
         public Creator toEntity(CreatorRequest creatorRequest, Channel channel) {
             Creator creator = new Creator(creatorRequest.name, creatorRequest.birth, creatorRequest.sex);
-            creator.addChannel(channel);
             return creator;
         }
     }

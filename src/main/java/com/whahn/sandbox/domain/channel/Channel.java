@@ -3,11 +3,13 @@ package com.whahn.sandbox.domain.channel;
 import com.whahn.sandbox.common.BaseEntity;
 import com.whahn.sandbox.common.ModelMapperUtil;
 import com.whahn.sandbox.domain.contract.v1.request.BasicContractRequest;
+import com.whahn.sandbox.domain.creator.Creator;
 import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +31,9 @@ public class Channel extends BaseEntity {
 
     @Column(name = "subscriber_count", nullable = false)
     private int subscriberCount;
+
+    /*@OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Creator> creators;*/
 
     @Override
     public String toString() {

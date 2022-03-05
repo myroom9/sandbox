@@ -1,11 +1,10 @@
 package com.whahn.sandbox.domain.salesmanagement.v1.request;
 
-import com.whahn.sandbox.domain.channel.Channel;
-import com.whahn.sandbox.domain.settlement.Settlement;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,10 +17,7 @@ public class BasicSalesManagementRequest {
     public static class SaveRequest {
         private Long channelId;
         private BigDecimal sales;
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate salesDate;
-
-        /*public Settlement toEntity(Channel channel) {
-            return new Settlement(this, channel);
-        }*/
     }
 }

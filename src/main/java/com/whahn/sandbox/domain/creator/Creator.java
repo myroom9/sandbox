@@ -36,18 +36,9 @@ public class Creator extends BaseEntity {
     @Column(nullable = false)
     private int sex;
 
-    @ManyToOne(targetEntity = Channel.class, fetch = FetchType.LAZY)
-    @JoinColumn(name="channel_id", updatable = false, nullable = false)
-    private Channel channel;
-
     @Override
     public String toString() {
         return ToStringBuilder
                 .reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
-    }
-
-    public Creator addChannel(Channel channel) {
-        this.channel = channel;
-        return this;
     }
 }

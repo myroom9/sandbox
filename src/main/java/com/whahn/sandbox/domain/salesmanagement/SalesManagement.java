@@ -15,9 +15,16 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@Table(name = "sales_management")
+@Table(name = "sales_managements")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SalesManagement extends BaseEntity {
+
+    public SalesManagement(BigDecimal salesAmount, LocalDate salesDate, Channel channel) {
+        this.salesAmount = salesAmount;
+        this.salesDate = salesDate;
+        this.channel = channel;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "BIGINT(1) UNSIGNED")
