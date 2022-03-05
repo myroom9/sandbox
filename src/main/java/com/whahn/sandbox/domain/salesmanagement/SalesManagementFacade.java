@@ -42,7 +42,6 @@ public class SalesManagementFacade {
         List<CreatorSettlement> creatorSettlements = contracts.stream().map(contract -> {
             BigDecimal creatorRate = BigDecimal.valueOf(contract.getCreatorRate()).divide(BigDecimal.valueOf(100));
             BigDecimal creatorSettlement = request.getSales().multiply(creatorRate);
-            log.info("creatorSettlement:{}, creatorRate:{}, request.getSales:{}", creatorSettlement, creatorRate, request.getSales());
             return new CreatorSettlement(channel, contract.getCreator(), creatorSettlement, request.getSalesDate());
         }).collect(Collectors.toList());
 
@@ -52,13 +51,17 @@ public class SalesManagementFacade {
         salesManagementService.saveSalesManagement(salesManagement);
         creatorSettlementService.saveAllCreatorSettlement(creatorSettlements);
 
+        BigDecimal companySettlementAmount = getCompanySettlementAmount(request, creatorSettlements);
+        CompanySettlement companySettlement = new CompanySettlement(channel, companySettlementAmount, request.getSalesDate());
+        companySettlementService.saveCompanySettlement(companySettlement);
+
+    }
+
+    private BigDecimal getCompanySettlementAmount(BasicSalesManagementRequest.SaveRequest request, List<CreatorSettlement> creatorSettlements) {
         BigDecimal creatorSettlementTotalAmount = creatorSettlements.stream()
                 .map(CreatorSettlement::getSettlementAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        BigDecimal companySettlementAmount = request.getSales().subtract(creatorSettlementTotalAmount);
-        CompanySettlement companySettlement = new CompanySettlement(channel, companySettlementAmount, request.getSalesDate());
-        companySettlementService.saveCompanySettlement(companySettlement);
-
+        return request.getSales().subtract(creatorSettlementTotalAmount);
     }
 }
