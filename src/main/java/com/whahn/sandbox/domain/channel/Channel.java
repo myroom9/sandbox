@@ -13,8 +13,10 @@ import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @Table(name = "channels")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Channel extends BaseEntity {
 
     public Channel(String name) {

@@ -20,7 +20,9 @@ public class ContractFacade {
 
     @Transactional
     public void contractAndChannelSave(BasicContractRequest.Save request) {
-        Channel channel = channelService.save(request.getChannelRequest());
+        BasicContractRequest.ChannelRequest channelRequest = request.getChannelRequest();
+        Channel saveChannel = channelRequest.toEntity(channelRequest);
+        Channel channel = channelService.save(saveChannel);
         List<Creator> creators = creatorService.saveAll(request.getCreatorsRequest(), channel);
         contractService.saveAll(request.getContractRequest(), channel, creators);
     }

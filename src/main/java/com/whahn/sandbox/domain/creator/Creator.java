@@ -2,9 +2,7 @@ package com.whahn.sandbox.domain.creator;
 
 import com.whahn.sandbox.domain.channel.Channel;
 import com.whahn.sandbox.common.BaseEntity;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -12,8 +10,10 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@Builder
 @Table(name = "creators")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Creator extends BaseEntity {
 
     public Creator(String name, String birth, int sex) {
