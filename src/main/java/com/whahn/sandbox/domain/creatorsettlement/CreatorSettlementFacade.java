@@ -1,11 +1,8 @@
 package com.whahn.sandbox.domain.creatorsettlement;
 
 import com.whahn.sandbox.domain.creatorsettlement.dto.request.CreatorSettlementRequestDto;
-import com.whahn.sandbox.domain.creatorsettlement.dto.response.CreatorSettlementResponseDto;
 import com.whahn.sandbox.domain.creatorsettlement.dto.response.CreatorSettlementResponseDto.CreatorSettlementAmountWithCreatorIdMonthly;
-import com.whahn.sandbox.domain.creatorsettlement.v1.CreatorSettlementRequest;
-import com.whahn.sandbox.domain.creatorsettlement.v1.CreatorSettlementRequest.SearchMonthlySettlementByCreator;
-import com.whahn.sandbox.domain.creatorsettlement.v1.response.CreatorSettlementResponse;
+import com.whahn.sandbox.domain.creatorsettlement.v1.request.CreatorSettlementRequest.SearchMonthlySettlementByCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

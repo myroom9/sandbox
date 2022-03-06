@@ -2,7 +2,7 @@ package com.whahn.sandbox.domain.creatorsettlement.v1;
 
 import com.whahn.sandbox.common.ApiResponse;
 import com.whahn.sandbox.domain.creatorsettlement.CreatorSettlementFacade;
-import com.whahn.sandbox.domain.creatorsettlement.v1.response.CreatorSettlementResponse;
+import com.whahn.sandbox.domain.creatorsettlement.v1.request.CreatorSettlementRequest;
 import com.whahn.sandbox.domain.creatorsettlement.v1.response.CreatorSettlementResponse.CreatorMonthlySettlementAmountWithCreatorIdResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
