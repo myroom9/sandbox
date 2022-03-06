@@ -45,6 +45,7 @@ public class SalesManagementRepositoryImpl extends QuerydslRepositorySupport imp
                 Projections.fields(ChannelSalesMonthly.class,
                         salesManagement.channel.id.as("channelId"),
                         salesManagement.channel.name.as("channelName"),
+                        salesManagement.salesAmount.sum().as("salesAmount"),
                         dateFormat.as("salesYearMonth"))).fetch();
     }
 }

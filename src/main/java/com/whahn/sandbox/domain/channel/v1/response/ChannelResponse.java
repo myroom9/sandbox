@@ -18,6 +18,7 @@ public class ChannelResponse {
         private Long channelId;
         private String channelName;
         private YearMonth searchMonth;
+        private BigDecimal salesAmount;
 
         private List<CreatorSettlementAmount> creators;
     }

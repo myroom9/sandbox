@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.time.YearMonth;
 
 public class SalesManagementResponseDto {
@@ -16,6 +17,7 @@ public class SalesManagementResponseDto {
     public static class ChannelSalesMonthly {
         private Long channelId;
         private String channelName;
+        private BigDecimal salesAmount;
         private String salesYearMonth;
     }
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.whahn.sandbox.domain.channel.v1.response.ChannelResponse.*;
+
 @Slf4j
 @Tag(name = "유튜브 채널관련 API", description = "유튜브 채널관련 API LIST")
 @RestController
@@ -28,12 +30,10 @@ public class ChannelController {
 
     @Operation(summary = "[월별 ]유튜브 채널 수익금 조회 및 크리에이터별 정산금액 조회")
     @GetMapping("/{channelId}/monthly/sales")
-    public ApiResponse<List<ChannelResponse.ChannelSalesAndCreatorSettlementAmount>> searchSalesAmountAndCreatorSettleAmount(@Valid ChannelRequest.SearchSalesAmount request,
-                                                                                                                             @PathVariable("channelId") Long channelId) {
-
-        channelFacade.searchSalesAndCreatorSettlement(channelId, request);
-
-        return ApiResponse.success();
+    public ApiResponse<List<ChannelSalesAndCreatorSettlementAmount>> searchSalesAmountAndCreatorSettleAmount(@Valid ChannelRequest.SearchSalesAmount request,
+                                                                                                             @PathVariable("channelId") Long channelId) {
+        List<ChannelSalesAndCreatorSettlementAmount> response = channelFacade.searchSalesAndCreatorSettlement(channelId, request);
+        return ApiResponse.success(response);
     }
 
 }
