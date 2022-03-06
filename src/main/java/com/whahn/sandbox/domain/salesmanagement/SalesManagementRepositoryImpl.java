@@ -48,4 +48,28 @@ public class SalesManagementRepositoryImpl extends QuerydslRepositorySupport imp
                         salesManagement.salesAmount.sum().as("salesAmount"),
                         dateFormat.as("salesYearMonth"))).fetch();
     }
+
+
+    public List<TotalSalesMonthly> findMonthlyTotalSalesByYearMonth(TotalSalesMonthlyRequest condition) {
+
+        StringTemplate dateFormat = Expressions.stringTemplate(
+                "DATE_FORMAT({0}, {1})"
+                , salesManagement.salesDate
+                , ConstantImpl.create("%Y-%m")
+        );
+
+        JPQLQuery<SalesManagement> query = from(salesManagement)
+                .where(
+                        salesManagement.salesDate.between(condition.getSearchStartMonth(), condition.getSearchEndMonth())
+                )
+                .groupBy(
+                        dateFormat
+                )
+                ;
+
+        return query.select(
+                Projections.fields(TotalSalesMonthly.class,
+                        salesManagement.salesAmount.sum().as("salesAmount"),
+                        dateFormat.as("salesYearMonth"))).fetch();
+    }
 }

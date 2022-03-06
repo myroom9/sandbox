@@ -20,4 +20,13 @@ public class SalesManagementResponseDto {
         private BigDecimal salesAmount;
         private String salesYearMonth;
     }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class TotalSalesMonthly {
+        private BigDecimal salesAmount;
+        private String salesYearMonth;
+    }
 }

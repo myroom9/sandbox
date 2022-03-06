@@ -6,6 +6,7 @@ import com.whahn.sandbox.exception.cumtom.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,7 @@ public class CreatorSettlementService {
                 .orElseThrow(() -> new BusinessException(ErrorCode.CREATOR_SETTLEMENT_REGISTER_EXCEPTION));
     }
 
+    @Transactional(readOnly = true)
     public List<CreatorSettlementAmountMonthly> findMonthlyCreatorSettlement(CreatorSettlementAmountMonthlyRequest request) {
         return creatorSettlementRepository.findMonthlyCreatorSettlementAmountByChannelIdAndYearMonth(request);
     }

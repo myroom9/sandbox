@@ -18,4 +18,13 @@ public class SalesManagementRequestDto {
         private LocalDate searchStartMonth;
         private LocalDate searchEndMonth;
     }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class TotalSalesMonthlyRequest {
+        private LocalDate searchStartMonth;
+        private LocalDate searchEndMonth;
+    }
 }

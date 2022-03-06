@@ -7,6 +7,7 @@ import com.whahn.sandbox.exception.cumtom.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,13 @@ public class SalesManagementService {
                 .orElseThrow(() -> new BusinessException(ErrorCode.SALES_MANAGEMENT_REGISTER_EXCEPTION));
     }
 
+    @Transactional(readOnly = true)
     public List<ChannelSalesMonthly> findMonthlyChannelSalesByChannelIdAndYearMonth(ChannelSalesMonthlyRequest condition) {
         return salesManagementRepository.findMonthlyChannelSalesByChannelIdAndYearMonth(condition);
+    }
+
+    @Transactional(readOnly = true)
+    public List<TotalSalesMonthly> findMonthlyTotalSalesByYearMonth(TotalSalesMonthlyRequest condition) {
+        return salesManagementRepository.findMonthlyTotalSalesByYearMonth(condition);
     }
 }
