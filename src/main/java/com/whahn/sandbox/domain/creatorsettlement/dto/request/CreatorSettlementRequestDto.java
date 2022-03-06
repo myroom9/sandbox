@@ -17,4 +17,14 @@ public class CreatorSettlementRequestDto {
         private LocalDate searchStartMonth;
         private LocalDate searchEndMonth;
     }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CreatorSettlementAmountMonthlyWithCreatorIdRequest {
+        private Long creatorId;
+        private LocalDate searchStartMonth;
+        private LocalDate searchEndMonth;
+    }
 }

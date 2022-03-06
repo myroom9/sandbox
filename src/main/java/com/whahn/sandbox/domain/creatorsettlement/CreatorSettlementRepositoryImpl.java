@@ -52,4 +52,35 @@ public class CreatorSettlementRepositoryImpl extends QuerydslRepositorySupport i
                         creatorSettlement.settlementAmount.sum().as("settlementAmount"),
                         dateFormat.as("settlementYearMonth"))).fetch();
     }
+
+    public List<CreatorSettlementAmountWithCreatorIdMonthly> findMonthlyCreatorSettlementAmountByCreatorIdAndYearMonth(CreatorSettlementAmountMonthlyWithCreatorIdRequest condition) {
+
+        StringTemplate dateFormat = Expressions.stringTemplate(
+                "DATE_FORMAT({0}, {1})"
+                , creatorSettlement.settlementDate
+                , ConstantImpl.create("%Y-%m")
+        );
+
+        JPQLQuery<CreatorSettlement> query = from(creatorSettlement)
+                .innerJoin(creatorSettlement.channel, channel)
+                .innerJoin(creatorSettlement.creator, creator)
+                .where(
+                        eq(creatorSettlement.creator.id, condition.getCreatorId()),
+                        creatorSettlement.settlementDate.between(condition.getSearchStartMonth(), condition.getSearchEndMonth())
+                )
+                .groupBy(
+                        dateFormat,
+                        creatorSettlement.creator.id
+                )
+                ;
+
+        return query.select(
+                Projections.fields(CreatorSettlementAmountWithCreatorIdMonthly.class,
+                        creatorSettlement.channel.id.as("channelId"),
+                        creatorSettlement.channel.name.as("channelName"),
+                        creatorSettlement.creator.id.as("creatorId"),
+                        creatorSettlement.creator.name.as("creatorName"),
+                        creatorSettlement.settlementAmount.sum().as("settlementAmount"),
+                        dateFormat.as("settlementYearMonth"))).fetch();
+    }
 }

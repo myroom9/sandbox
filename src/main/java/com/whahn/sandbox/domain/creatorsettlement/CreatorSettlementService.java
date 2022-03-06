@@ -1,7 +1,6 @@
 package com.whahn.sandbox.domain.creatorsettlement;
 
 import com.whahn.sandbox.common.ErrorCode;
-import com.whahn.sandbox.domain.creatorsettlement.dto.response.CreatorSettlementResponseDto;
 import com.whahn.sandbox.exception.cumtom.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,12 @@ public class CreatorSettlementService {
     }
 
     @Transactional(readOnly = true)
-    public List<CreatorSettlementAmountMonthly> findMonthlyCreatorSettlement(CreatorSettlementAmountMonthlyRequest request) {
+    public List<CreatorSettlementAmountMonthly> findMonthlyCreatorSettlementByChannelId(CreatorSettlementAmountMonthlyRequest request) {
         return creatorSettlementRepository.findMonthlyCreatorSettlementAmountByChannelIdAndYearMonth(request);
+    }
+
+    @Transactional(readOnly = true)
+    public List<CreatorSettlementAmountWithCreatorIdMonthly> findMonthlyCreatorSettlementByCreatorId(CreatorSettlementAmountMonthlyWithCreatorIdRequest request) {
+        return creatorSettlementRepository.findMonthlyCreatorSettlementAmountByCreatorIdAndYearMonth(request);
     }
 }

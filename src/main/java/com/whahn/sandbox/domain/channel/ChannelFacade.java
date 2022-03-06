@@ -1,16 +1,11 @@
 package com.whahn.sandbox.domain.channel;
 
 import com.whahn.sandbox.domain.channel.v1.request.ChannelRequest;
-import com.whahn.sandbox.domain.channel.v1.response.ChannelResponse;
 import com.whahn.sandbox.domain.creatorsettlement.CreatorSettlementService;
-import com.whahn.sandbox.domain.creatorsettlement.dto.request.CreatorSettlementRequestDto;
-import com.whahn.sandbox.domain.creatorsettlement.dto.response.CreatorSettlementResponseDto;
 import com.whahn.sandbox.domain.salesmanagement.SalesManagementService;
 import com.whahn.sandbox.domain.salesmanagement.dto.request.SalesManagementRequestDto;
-import com.whahn.sandbox.domain.salesmanagement.dto.response.SalesManagementResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.bridge.MessageUtil;
 import org.springframework.stereotype.Component;
 
 import java.time.YearMonth;
@@ -38,7 +33,7 @@ public class ChannelFacade {
 
         // 2. creator별 정산금액 월별 조회
         CreatorSettlementAmountMonthlyRequest creatorSettlementCondition = new CreatorSettlementAmountMonthlyRequest(channelId, request.getSearchStartMonth().atDay(1), request.getSearchEndMonth().atEndOfMonth());
-        List<CreatorSettlementAmountMonthly> creatorSettlementAmountByMonthly = creatorSettlementService.findMonthlyCreatorSettlement(creatorSettlementCondition);
+        List<CreatorSettlementAmountMonthly> creatorSettlementAmountByMonthly = creatorSettlementService.findMonthlyCreatorSettlementByChannelId(creatorSettlementCondition);
 
         // 3. merge
         List<ChannelSalesAndCreatorSettlementAmount> result = new ArrayList<>();
