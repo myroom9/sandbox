@@ -15,10 +15,7 @@ import java.util.stream.Collectors;
 public class CreatorService {
     private final CreatorRepository creatorRepository;
 
-    public List<Creator> saveAll(List<BasicContractRequest.CreatorRequest> creatorsRequest, Channel channel) {
-        List<Creator> creators = creatorsRequest.stream()
-                .map(creator -> creator.toEntity(creator, channel))
-                .collect(Collectors.toList());
+    public List<Creator> saveAll(List<Creator> creators) {
         return creatorRepository.saveAll(creators);
     }
 }

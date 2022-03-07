@@ -3,9 +3,7 @@ package com.whahn.sandbox.domain.contract;
 import com.whahn.sandbox.domain.channel.Channel;
 import com.whahn.sandbox.common.BaseEntity;
 import com.whahn.sandbox.domain.creator.Creator;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -13,8 +11,10 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@Builder
 @Table(name = "contracts")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Contract extends BaseEntity {
 
     public Contract(int creatorRate, int companyRate) {

@@ -1,0 +1,26 @@
+POST /api/v1/contract HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 317
+
+{
+  "channelRequest": {
+    "name": "whahn-channel"
+  },
+  "creatorsRequest": [
+    {
+      "name": "whahn",
+      "birth": "19921102",
+      "sex": 0
+    },
+    {
+      "name": "whahn2",
+      "birth": "19921101",
+      "sex": null
+    }
+  ],
+  "contractRequest": {
+    "creatorRate": 70,
+    "companyRate": 30
+  }
+}

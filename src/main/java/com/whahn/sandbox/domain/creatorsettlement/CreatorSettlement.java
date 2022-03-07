@@ -3,9 +3,7 @@ package com.whahn.sandbox.domain.creatorsettlement;
 import com.whahn.sandbox.common.BaseEntity;
 import com.whahn.sandbox.domain.channel.Channel;
 import com.whahn.sandbox.domain.creator.Creator;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -15,8 +13,10 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
+@Builder
 @Table(name = "creator_settlements")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class CreatorSettlement extends BaseEntity {
 
     public CreatorSettlement(Channel channel,

@@ -2,9 +2,7 @@ package com.whahn.sandbox.domain.companysettlement;
 
 import com.whahn.sandbox.common.BaseEntity;
 import com.whahn.sandbox.domain.channel.Channel;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,8 +10,10 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
+@Builder
 @Table(name = "company_settlements")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class CompanySettlement extends BaseEntity {
 
     public CompanySettlement(Channel channel, BigDecimal settlementAmount, LocalDate settlementDate) {

@@ -1,0 +1,6 @@
+POST /api/v1/sales-management/daily HTTP/1.1
+Host: localhost:8080
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 43
+
+channelId=2&sales=1000&salesDate=2022-03-06

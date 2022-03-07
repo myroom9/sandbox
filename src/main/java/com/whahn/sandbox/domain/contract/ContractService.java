@@ -22,16 +22,8 @@ import static com.whahn.sandbox.domain.contract.v1.request.BasicContractRequest.
 public class ContractService {
     private final ContractRepository contractRepository;
 
-    public List<Contract> saveAll(ContractRequest contractRequest, Channel channel, List<Creator> creators) {
-        List<Contract> contracts = creators.stream().map(creator -> {
-            Contract contract = new Contract(contractRequest.getCreatorRate(), contractRequest.getCompanyRate());
-            contract.addStatus();
-            contract.addChannelAndCreator(channel, creator);
-            return contract;
-        }).collect(Collectors.toList());
+    public void saveAll(List<Contract> contracts) {
         contractRepository.saveAll(contracts);
-
-        return contracts;
     }
 
     public List<Contract> findAllByChannel(Channel channel) {
