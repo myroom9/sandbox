@@ -31,7 +31,7 @@ public class ChannelController {
     @Operation(summary = "[월별] 유튜브 채널 수익금 조회 및 크리에이터별 정산금액 조회")
     @GetMapping("/{channelId}/monthly/sales")
     public ApiResponse<List<ChannelSalesAndCreatorSettlementAmount>> searchSalesAmountAndCreatorSettleAmount(@Valid ChannelRequest.SearchSalesAmount request,
-                                                                                                             @PathVariable("channelId") Long channelId) {
+                                                                                                  @PathVariable("channelId") Long channelId) throws Exception {
         List<ChannelSalesAndCreatorSettlementAmount> response = channelFacade.searchSalesAndCreatorSettlement(channelId, request);
         return ApiResponse.success(response);
     }
