@@ -1,0 +1,47 @@
+#!/bin/bash
+
+RED='\033[0;31;1m'
+GREEN='\033[0;32;1m'
+REMOVE_COLOR='\033[0m'
+#
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+JIRA_CODE=''
+COMMIT_MSG_FILE=$1
+
+echo "gogogogogogogo"
+
+if [[ "${BRANCH_NAME}" == *"/"* ]];then
+  PREFIX=$(echo ${BRANCH_NAME} | cut -d '/' -f1)
+  JIRA_CODE=$(echo ${BRANCH_NAME} | cut -d '/' -f2)
+fi
+
+if [[ "${JIRA_CODE}" == '' ]];then
+  exit;
+fi
+
+echo "${JIRA_CODE}"
+echo "${PREFIX}"
+
+# Checkstyle
+if [[ "${PREFIX}" == "feature" ]];then
+    printf "${GREEN}###### [PRE-COMMIT-MSG] START TO ATTACH THE PREFIX ON THIS BRANCH #####${REMOVE_COLOR}\n"
+
+    FIRST_LINE=$(head -n1 "${COMMIT_MSG_FILE}")
+
+    # -z = 문자열 0이면 참
+    if [ -z "${FIRST_LINE}" ];then
+      echo "WORKING....."
+      sed -i ".bak" "1s/^/[${JIRA_CODE}]" "${COMMIT_MSG_FILE}"
+    fi
+
+    printf "${RED}STEP 1 COMPLETE....\n"
+
+else
+  echo "THIS BRANCH IS NOT A feature BRANCH"
+  echo "So, JUST PASSED ANY TASK"
+fi
+
+echo "DONE..."
+
+#done
+#
