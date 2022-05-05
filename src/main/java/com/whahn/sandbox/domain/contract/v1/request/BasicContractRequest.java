@@ -70,7 +70,7 @@ public class BasicContractRequest {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class ContractRequest { 
+    public static class ContractRequest {
         @Schema(description = "유튜브 크리에이터 요율")
         @Min(value = 0, message = "크리에이터 요율이 0보다 작을 수 없습니다.")
         @Max(value = 100, message = "크리에이터 요율이 100을 넘을 수 없습니다.")
