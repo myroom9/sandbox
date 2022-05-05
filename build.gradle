@@ -58,5 +58,5 @@ task checkstyle(type: Checkstyle) {
     showViolations true
     classpath = files()
     ignoreFailures = false
-    maxWarnings = 0
+    maxWarnings = 10000
 }
