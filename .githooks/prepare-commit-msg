@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#힌트: '.git/hooks/prepare-commit-msg' 후크가 실행 가능하도록 설정되지 않아서, 무시됩니다.
+#힌트: 이 경고는 `git config advice.ignoredHook false` 명령으로 끌 수 있습니다.
+#권한: 755 권한 필요함
+RED='\033[0;31;1m'
+GREEN='\033[0;32;1m'
+REMOVE_COLOR='\033[0m'
+#
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+JIRA_CODE=''
+COMMIT_MSG=$1
+
+echo "gogogogogogogo"
+
+if [[ "${BRANCH_NAME}" == *"/"* ]];then
+  PREFIX=$(echo ${BRANCH_NAME} | cut -d '/' -f1)
+  JIRA_CODE=$(echo ${BRANCH_NAME} | cut -d '/' -f2)
+fi
+
+if [[ "${JIRA_CODE}" == '' ]];then
+  exit;
+fi
+
+if [[ "${PREFIX}" == "feature" ]];then
+    printf "${GREEN}###### [PRE-COMMIT-MSG] START TO ATTACH THE PREFIX ON THIS BRANCH #####${REMOVE_COLOR}\n"
+
+    # FIRST_LINE=$(head -n1 "${COMMIT_MSG}")
+
+    # -z = 문자열 0이면 참
+    # if [ -n "${FIRST_LINE}" ];then
+    DESCRIPTION=$(git config branch."$BRANCH_NAME".description)
+    echo "WORKING....."
+    echo "[${JIRA_CODE}] $(cat "${COMMIT_MSG}")" > "${COMMIT_MSG}"
+    # fi
+
+    if [[ -n "${DESCRIPTION}" ]]
+    then
+      echo "" >> "${COMMIT_MSG}"
+      echo "${DESCRIPTION}" >> "${COMMIT_MSG}"
+    fi
+
+    printf "${RED}STEP 1 COMPLETE....\n"
+
+else
+  echo "THIS BRANCH IS NOT A feature BRANCH"
+  echo "So, JUST PASSED ANY TASK"
+fi
+
+echo "DONE..."
+
+#done
+#
