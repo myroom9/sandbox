@@ -10,5 +10,6 @@ import static com.whahn.sandbox.domain.salesmanagement.dto.response.SalesManagem
 
 public interface SalesManagementRepositoryCustom {
     List<ChannelSalesMonthly> findMonthlyChannelSalesByChannelIdAndYearMonth(ChannelSalesMonthlyRequest condition);
+
     List<TotalSalesMonthly> findMonthlyTotalSalesByYearMonth(TotalSalesMonthlyRequest condition);
 }

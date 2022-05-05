@@ -28,7 +28,7 @@ public class CompanySettlement extends BaseEntity {
     private Long id;
 
     @ManyToOne(targetEntity = Channel.class, fetch = FetchType.LAZY)
-    @JoinColumn(name="channel_id", updatable = false, nullable = false)
+    @JoinColumn(name = "channel_id", updatable = false, nullable = false)
     private Channel channel;
 
     @Column(name = "settlement_amount")

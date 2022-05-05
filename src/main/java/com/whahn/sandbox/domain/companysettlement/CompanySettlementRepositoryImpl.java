@@ -30,9 +30,9 @@ public class CompanySettlementRepositoryImpl extends QuerydslRepositorySupport i
 
     public List<CompanySettlementMonthlyReturn> findCompanyMonthlySettlementAmountByChannelId(CompanySettlementMonthly condition) {
         StringTemplate dateFormat = Expressions.stringTemplate(
-                "DATE_FORMAT({0}, {1})"
-                , companySettlement.settlementDate
-                , ConstantImpl.create("%Y-%m")
+                "DATE_FORMAT({0}, {1})",
+                companySettlement.settlementDate,
+                ConstantImpl.create("%Y-%m")
         );
 
         JPQLQuery<CompanySettlement> query = from(companySettlement)
